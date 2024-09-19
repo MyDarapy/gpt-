@@ -192,7 +192,6 @@ class Feedforward(nn.Module):
     out = self.linear1(x)
     out = self.gelu(out)
     out = self.linear2(out)
-    out = self.gelu(out)
     out = self.dropout(x)
     return out
 
