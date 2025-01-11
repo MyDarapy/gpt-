@@ -33,7 +33,7 @@ Tokenization is the process of converting raw text into a sequence of tokens tha
 Multi-Head Attention (MHA) is a critical component of the transformer architecture, allowing the model to focus on different parts of the input sequence simultaneously. This implementation follows the approach outlined in the [GPT-1 paper](https://cdn.openai.com/research-covers/language-unsupervised/language_understanding_paper.pdf), involving:
 
 - **Scaled Dot-Product Attention**: Computes attention scores between queries and keys, scaled by the square root of their dimension.
-- **8 Attention Heads per block**: Splits the queries, keys, and values into multiple heads to capture diverse contextual relationships between words.
+- **12 Attention Heads per block**: Splits the queries, keys, and values into multiple heads to capture diverse contextual relationships between words.
 For each word (or token) in the input, the model generates three vectors:
 **Query (Q):** Represents the current word’s perspective. 
 **Key (K):** Represents how each word can be referenced.
@@ -65,6 +65,22 @@ The entire architecture has **12 transformer blocks** in total. Each transformer
 2. **Feed-Forward Neural Network**: Processes the attention outputs through two linear layers with a GELU activation.
 3. **Layer Normalization**: Applied before each sub-layer to stabilize and accelerate training.
 4. **Residual Connections**: Adds the input of each sub-layer to its output to facilitate gradient flow.
+
+### Model Hyperparameters
+context_length = 512
+pad_index = 0
+EOS_token = 1
+embed_dim = 768  # also called model dimension d_model (512 in the GPT 1 paper)
+num_of_heads = 12 # Attention heads
+dropout = 0.1  #regularization
+batch_size = 6
+device = 'cuda' if torch.cuda.is_available() else 'cpu'
+n_layers = 12 #Transformer block
+eval_iters = 200
+max_iter = 7000
+evaluation_intervals = 200
+learning_rate = 2.5e-4
+vocab_size = 20_000
 
 ### Training Process
 
