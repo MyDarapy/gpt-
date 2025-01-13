@@ -1,5 +1,6 @@
 Welcome to the **GPT-1 from Scratch with PyTorch** repository! This project is an educational endeavor to recreate the original GPT-1 model from scratch using PyTorch, albeit with fewer parameters to accommodate training on a modest GPU setup (first pre-trained on a T4 GPU and then on an A10G). The primary goal was to deepen my understanding of key concepts such as multi-head attention, tokenization, checkpointing, learning rate scheduling, and the intricacies involved in model pre-training from the ground up.
 
+Complete Google Colab script to run this repo: 
 ## Features
 
 - **Custom Implementation**: Recreated GPT-1 architecture from scratch using PyTorch.
