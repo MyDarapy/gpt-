@@ -1,10 +1,13 @@
 import torch 
 import torch.nn as nn 
-import SimpleSelfAttentionHead 
-#Implement multiple attention head to work in parallel 8 heads per block in our case
+from attention_head import SimpleSelfAttentionHead
+
+#Implement multiple attention head to work in parallel 12 heads per block in our case
 class MultiHeadAttention(nn.Module):
-  def __init__(self, num_of_heads, head_size):
+  def __init__(self, num_of_heads, embed_dim, head_size, dropout_probability):
     super().__init__()
+    assert embed_dim % num_of_heads == 0
+    head_size = int(embed_dim // num_of_heads)
     self.heads = nn.ModuleList([SimpleSelfAttentionHead(head_size) for _ in range(num_of_heads)])
     self.projection = nn.Linear(embed_dim, embed_dim)
     self.dropout = nn.Dropout(dropout)

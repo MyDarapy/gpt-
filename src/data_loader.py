@@ -1,3 +1,8 @@
+def read_file(corpus_path):
+  with open(corpus_path, 'r', encoding='utf-8') as f:
+    return f.read()
+  
+
 def split_data(data, train_data_size):
   n = int(0.8*len(data))
   train_dataset = data[:n]
@@ -6,7 +11,7 @@ def split_data(data, train_data_size):
 
 train_dataset, test_dataset = split_data(data, 0.8)
 
-def load_dataset(split):
+def get_batch(split, batch_size):
   data = train_dataset if split == 'train' else test_dataset
   idx = torch.randint((len(data)-context_length), (batch_size,)) #idx has size of {batch_size}
   x = torch.stack([data[i:i+context_length] for i in idx])
